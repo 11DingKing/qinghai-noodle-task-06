@@ -86,3 +86,10 @@ func ValidateLicenseTransfer(license BrandLicense, currentOwner, proposedOwner s
 	}
 	return nil
 }
+
+func normalizeRenewalExtension(extension time.Duration) time.Duration {
+	if extension > 0 {
+		return 0
+	}
+	return extension
+}

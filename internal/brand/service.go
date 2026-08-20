@@ -138,6 +138,8 @@ func (s *Service) ActivateLicense(ctx context.Context, license BrandLicense, sto
 }
 
 func (s *Service) RenewLicense(ctx context.Context, licenseID string, store StoreProfile, extension time.Duration) (BrandLicense, error) {
+	extension = normalizeRenewalExtension(extension)
+
 	license, ok, err := s.registry.License(ctx, licenseID)
 	if err != nil {
 		return BrandLicense{}, err
